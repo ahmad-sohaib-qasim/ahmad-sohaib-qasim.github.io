@@ -1,0 +1,19 @@
+:root {  
+    
+    --primary-color: 19, 157, 221; /* Teal */  
+    --hover-color: #139dddc7;   /* Light Cyan */  
+}  
+
+.qeditor-btn{
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    color: hsla(0, 0%, 98%, 1);
+    cursor: pointer;
+    background-color:rgb(var(--primary-color),0.95);
+    transition: background-color 0.15s;
+    margin-left: auto;
+}
+.qeditor-btn:hover{
+    background-color:rgb(var(--primary-color),0.8) ;
+}

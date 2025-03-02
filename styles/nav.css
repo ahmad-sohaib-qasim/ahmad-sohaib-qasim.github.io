@@ -1,0 +1,123 @@
+.header-ribbon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    z-index: 1000;
+
+}
+
+.logo {
+    font-family: 'Pacifico', cursive;
+    font-size: 24px;
+    color: var(--primary-color);
+    white-space: nowrap;
+}
+
+.header-menu-one {
+    display: flex;
+    gap: 10px;
+
+}
+.header-menu-two{
+    display: none;
+    flex-direction: column;
+    position: relative;
+    
+}
+
+.header-menu-two .icon{
+    width: 100%;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.header-menu-two .options{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 50%;
+    transform: scale(0.8);
+    background-color: rgb(46, 46, 46);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+border-radius: 10px;
+overflow: hidden;
+    transition: 0.4s;
+    padding-block: 0.5rem;
+    border: 1px solid rgba(141, 141, 141, 0.2);
+    transform-origin: top right;
+}
+.header-menu-two .options.visible{
+        opacity: 1;
+        transform: scale(1);
+        pointer-events: all;
+}
+.header-menu-two .options .ham-option{
+    border: 2px solid rgb(19, 157, 221);
+    border-radius: 0px;
+    padding-block:0.6rem ;
+    padding-inline:2rem 3.5rem;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    gap: 5px;
+}
+
+:is(.header-menu-one,.header-menu-two) a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.header-menu-two a i{
+    min-width: 22px;
+}
+:is(.header-menu-one,.header-menu-two) a:hover {
+    background-color: var(--primary-color);
+    color: black;
+}
+
+.sign-in-button {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+    margin: 0 10px;
+}
+
+.sign-in-button:hover {
+    background-color: var(--hover-color);
+}
+
+@media (max-width: 768px) {
+.header-menu-one{
+    display: none;
+}
+.header-menu-two{
+    display: flex;
+}
+.header-ribbon {
+    display: flex;
+    gap: 1rem;
+    justify-content: end;
+}
+.logo{
+    /* justify-self: start; */
+    margin-right: auto;
+}
+
+}

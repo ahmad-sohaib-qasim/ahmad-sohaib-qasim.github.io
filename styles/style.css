@@ -1,0 +1,229 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #282c34;
+    color: white;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    max-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    /* Changed to reset all padding */
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+    display: none;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #444;
+    max-height: 30px;
+    /* border: 0.5px solid #777; */
+}
+
+body::-webkit-scrollbar-track {
+    /* border-left: 0.5px solid var(--primary-color); */
+    background-color: #1e1e27;
+}
+
+
+button {
+    border: none;
+}
+
+label {
+    display: flex;
+    align-items: center;
+}
+
+
+
+.project-control-ribbon,
+.editor-control-ribbon {
+    display: flex;
+    align-items: center;
+    background-color: #444;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.project-control-ribbon {
+    padding: 10px 20px;
+    border-bottom: 2px solid rgb(var(--primary-color));
+    box-shadow: 0px 2px 10px #1e1e27;
+}
+
+.rib-ele {
+    display: flex;
+}
+
+.editor-control-ribbon {
+    box-shadow: 0px 2px 10px #1e1e27;
+    margin-top: 2px;
+    outline-offset: -1px;
+    outline: 1px solid #777;
+}
+
+
+
+
+
+
+
+
+
+
+.ai-assistant-button {
+    /* height: 40px; Set consistent height   */
+    padding: 5px;
+    /* Adjusted padding for a more uniform appearance */
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.create-server-button {
+    background-color: var(--primary-color);
+    /* Set background color for the HOST button */
+}
+
+.create-server-button:hover {
+    background-color: var(--hover-color);
+    /* Hover effect for the HOST button */
+}
+
+.ai-assistant-button {
+    background-color: var(--primary-color);
+    /* Set background color for the AI Assistant button */
+}
+
+.ai-assistant-button:hover {
+    background-color: var(--hover-color);
+    /* Hover effect for AI Assistant button */
+}
+
+
+
+.editor-buttons button {
+    /* background-color: var(--primary-color); */
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    /* height: 40px; Set consistent height   */
+}
+
+.editor-buttons {
+    max-width: fit-content;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    /* Ensure buttons are in a row */
+}
+
+.editor-btns {
+    padding: 5px 15px;
+    /* Adjust padding for better appearance */
+    border: 1px solid transparent;
+    /* Default border */
+    background-color: #333;
+    /* Default background color */
+    color: #fff;
+    /* Default text color */
+    cursor: pointer;
+    /* Change cursor to pointer */
+    transition: border 0.3s, background-color 0.3s;
+    /* Smooth transition for hover and active states */
+}
+
+.editor-btns:hover {
+
+    background-color: #252525;
+}
+
+.editor-btns.active-btn {
+    background-color:rgb(var(--primary-color));
+}
+
+.editor-btns.active-btn:hover {
+    background-color: rgb(var(--primary-color));
+    /* Slightly different background for active button */
+}
+
+/* Optional: Add hover effect for buttons */
+
+
+.line {
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: bolder;
+    color: rgb(216, 216, 216);
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .line {
+        display: none !important;
+    }
+
+    .editor-control-ribbon {
+        margin-inline: 0px;
+        gap: 5px;
+    }
+
+    .project-control-ribbon {
+        padding: 5px 10px;
+    }
+
+    .project-control-ribbon>.dropdown,
+    .project-control-ribbon>.nav-buttons {
+        display: none;
+        /* Hide dropdowns and buttons on small screens */
+    }
+
+    .sliding-panel.active {
+        display: flex;
+        flex-direction: column;
+        /* Show the menu icon on small devices */
+        padding: 5px;
+    }
+
+    .sliding-panel.active .preview-controls {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        border: 1px solid white;
+    }
+
+    .sliding-panel.active .nav-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        border: 1px solid white;
+    }
+}
