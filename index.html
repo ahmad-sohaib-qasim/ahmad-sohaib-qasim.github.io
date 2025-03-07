@@ -1,224 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Live HTML Editor</title>  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"> 
+    <link rel="stylesheet" href="style.css">  
+    <link rel="stylesheet" href="vb.css">  
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Q Editor</title>
+    <!-- CodeMirror CSS -->  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.css">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/dracula.min.css">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/eclipse.min.css">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/monokai.min.css">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/ambiance.min.css">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/material.min.css">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/theme/night.min.css">  
 
-    <!-- External Styles -->
-    <link rel="stylesheet" href="styles/variables.css" />
-    <link rel="stylesheet" href="styles/style.css" />
-    <link rel="stylesheet" href="styles/nav.css" />
-    <link rel="stylesheet" href="styles/panel.css" />
-    <link rel="stylesheet" href="styles/toltip.css" />
-    <link rel="stylesheet" href="styles/sidebar.css">
-    <!-- CodeMirror Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/solarized.min.css">  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/dracula.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/monokai.css">  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/material.css">  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/eclipse.css">  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/show-hint.min.css">
-    <!-- Fonts & Icons -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-light.css" />
-    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css" />
-    <!-- manifest -->
-    <link rel="manifest" href="manifest.json">
-</head>
-
-<body>
-
-    <div class="sidebar">
-        <div class="sidebar-header sidebar-ele">
-            <p class="sidebar-title"><i class="fa-light fa-gear"></i> Settings</p>
-            <div class="dotes sidebar-switch" id="close-sb"><i class="fa-solid fa-xmark-large cross"></i></div>
-        </div>
-
-        <div class="sidebar-settings-section sidebar-ele">
-            <p class="sidebar-section-title">Export as</p>
-
-            <div class="sidebar-inp"> <label for="projectName">Project name:</label><input type="text" id="projectName"
-                    value="MyProject" placeholder="File Name"></div>
-
-            <div class="sidebar-inp">
-                <label for="exportFileType">File type:</label>
-                <select id="exportFileType" class="dropdown ">
-                    <option value="zip">.ZIP</option>
-                    <option value="current">Current File</option>
-                </select>
-            </div>
-
-            <button class="sidebar-btn" id="exportButton"><i
-                    class="fa-sharp fa-light fa-arrow-down-to-line"></i>&nbsp;&nbsp;Export</button>
-        </div>
-
-        <div class="sidebar-settings-section sidebar-ele">
-            <p class="sidebar-section-title">Editor settings</p>
-
-            <div class="sidebar-inp">
-                <label for="themeSelector">Theme:</label>
-                <select id="themeSelector" class="dropdown ">
-                    <option value="default">Default</option>
-                    <option value="dracula" selected>Dracula</option>
-                    <option value="monokai">Monokai</option>  
-                    <option value="solarized light">Solarized Light</option>  
-                    <option value="material">Material</option>  
-                    <option value="eclipse">Eclipse</option>
-                </select>
-            </div>
-
-
-            <div class="sidebar-inp"><label for="tabsize">Tab spaces:</label><input type="number" id="tabsize"
-                    value="4"></div>
-            <div class="sidebar-inp"><label for="fontSize">Font size:</label><input type="number" id="fontSize"
-                    value="12"></div>
-
-            <div class="checkbox"><input type="checkbox" id="wordWrap" checked><label for="wordWrap">Word wrap</label>
-            </div>
-            <div class="checkbox"><input type="checkbox" id="lineNumber" checked><label for="lineNumber">Line
-                    numbers</label></div>
-        </div>
-    </div>
-
-    </div>
-
-    <!-- Project Control Ribbon -->
-    <!-- Project Control Ribbon -->
-    <div class="project-control-ribbon">
-        <select name="" id="" class="dropdown">
-            <option value="html" selected>HTML</option>
-            <option value="python">Python</option>
-            <option value="C++">C++</option>
-        </select>
-        <button class="install qeditor-btn" id="installButton" style="display: none;"><i class="fa-sharp fa-light fa-arrow-down-to-line"></i> Install</button>
-    </div>
-
-    <!-- Sliding Panel -->
-
-
-    <!-- Editor Control Ribbon -->
-    <div class="editor-control-ribbon">
-
-        <div class="editor-buttons">
-            <button onclick="showPanel('htmlPanel')" class="editor-btns active-btn">HTML</button>
-            <button onclick="showPanel('cssPanel')" class="editor-btns">CSS</button>
-            <button onclick="showPanel('jsPanel')" class="editor-btns">Js</button>
-            <button onclick="showPanel('previewPanel')" class="editor-btns view-btn">View</button>
-
-            <div class="line"><i class="fa-thin fa-pipe line"></i></div>
-
-            <button id="runButton" class="toltip-element" data-toltip="View in New Tab"
-                style="color: rgb(var(--primary-color)); border-radius: 40px; padding: 8px 10px; font-size: 20px;">
-                <i class="fa-light fa-solid fa-arrow-up-right-from-square"></i>
-            </button>
-        </div>
-        <div class="dotes sidebar-switch" id="open-sb"><i class="fa-regular fa-ellipsis-vertical"></i></div>
-    </div>
-
-
-
-    <div class="editor-main">
-        <div class="pannels">
-            <div class="panel active" id="htmlPanel">
-                <div class="editor-container">
-                    <textarea id="htmlContent"></textarea>
-                </div>
-            </div>
-            <div class="panel" id="cssPanel">
-                <div class="editor-container">
-                    <textarea id="cssContent"></textarea>
-                </div>
-            </div>
-            <div class="panel" id="jsPanel">
-                <div class="editor-container">
-                    <textarea id="jsContent"></textarea>
-                </div>
-            </div>
-        </div>
-        <div class="centraldiv"></div>
-        <div id="previewPanel" class=" active">
-            <iframe id="previewFrame" class="editor-container"></iframe>
-        </div>
-    </div>
-
-
-    <!-- <div class="header-ribbon">
-        <div class="logo">Q Editor</div>
-
-        <div class="header-menu-one">
-            <a href="#">Blogs</a>
-            <a href="#">Tutorials</a>
-            <a href="#">Products</a>
-            <a href="#">About</a>
-            <a href="#">Share</a>
-        </div>
-        <div class="header-menu-two">
-            <div class="icon"><i class="fa-solid fa-bars"></i></div>
-            <div class="options">
-                <a href="#" class="ham-option"><i class="fa-sharp fa-light fa-pen-to-square"></i> Blogs</a>
-                <a href="#" class="ham-option"><i class="fa-sharp fa-light fa-box-open"></i> Products</a>
-                <a href="#" class="ham-option"><i class="fa-sharp fa-light fa-circle-question"></i> About</a>
-                <a href="#" class="ham-option"><i class="fa-sharp fa-light fa-message-lines"></i> Feedback</a>
-                <a href="#" class="ham-option"><i class="fa-sharp fa-light fa-share-nodes"></i> Share</a>
-            </div>
-        </div>
-        <button class="sign-in-button"><i class="fa-solid fa-circle-user" style="font-size: 20px; margin-right: 5px;"></i>Sign In</button>
-    </div> -->
-    <!-- <footer class="footer">&copy; 2025 Q Editor. All rights reserved.</footer> -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/xml/xml.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/css/css.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/show-hint.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/xml-hint.js"></script>
-    <script src="https://codemirror.net/5/addon/hint/html-hint.js"></script>
-    <script src="script/script.js"></script>
-    <script src="script/pannel.js"></script>
-    <script src="script/sidebar.js"></script>
-    <script src="app.js"></script>
-    <script src="sw.js"></script>
-    <script src="script/main.js"></script>
-    <script src="script/resize.js"></script>
-    <!-- <script src="hint.js"></script> -->
-</body>
-
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <button onclick="showPanel('htmlPanel')" class="editor-btns">HTML</button>  
-        <button onclick="showPanel('cssPanel')" class="editor-btns">CSS</button>  
-        <button onclick="showPanel('jsPanel')" class="editor-btns">JS</button>  
-    </div>  
-
-    <div id="editorContainer">  
-        <div id="htmlPanel" class="panel active">  
-            <textarea id="htmlContent"></textarea>  
+</head>  
+<body>  
+    <div class="main">
+        <div class="header">  
+            <div class="tab-group">  
+                <!-- Tabs will be dynamically added here -->  
+            </div>  
         </div>  
-        <div id="cssPanel" class="panel">  
-            <textarea id="cssContent"></textarea>  
-        </div>  
-        <div id="jsPanel" class="panel">  
-            <textarea id="jsContent"></textarea>  
-        </div>  
+    
+        <div class="controls">  
+            <button class="new-tab-button" style="background-color: #6272a4; color: #dfdfdf;"><i class="fas fa-plus"></i></button>  
+            <button class="delete-tab" style="color: rgb(240, 64, 64);"><i class="fas fa-trash"></i></button>  
+            <button class="rename-tab"><i class="fas fa-edit"></i></button>  
+            <button class="copy-content"><i class="fas fa-copy"></i></button>  
+            <button class="download-html"><i class="fas fa-download"></i></button>  
+            <label for="lineNumber">Line Numbers</label>  
+            <input type="checkbox" id="lineNumber" checked>  
+            
+            <label for="wordWrap">Word Wrap</label>  
+            <input type="checkbox" id="wordWrap" checked>  
+            <select id="theme-selector">  
+                <option value="default">Default</option>  
+                <option value="dracula">Dracula</option>  
+                <option value="eclipse">Eclipse</option>  
+                <option value="monokai">Monokai</option>  
+                <option value="neat">Neat</option>  
+                <option value="cobalt">Cobalt</option>  
+                <option value="rubyblue">Rubyblue</option>  
+                <option value="twilight">Twilight</option>  
+                <option value="vibrant-ink">Vibrant Ink</option>  
+                <option value="xq-dark">XQ Dark</option>  
+              </select>
+
+                <!-- New "Open in VB" Button -->  
+  <button id="openVB">Open in VB</button>  
+
+  <!-- The Virtual Browser Overlay -->  
+  <div id="vbOverlay">  
+    <div id="vbHeader">  
+        <h1>Virtual Browser</h1>  
+        <form id="vbSearchForm">  
+          <select id="vbSearchEngine">  
+            <option value="bing" selected>Bing</option>  
+            <option value="google">Google</option>  
+            <option value="duckduckgo">DuckDuckGo</option>  
+            <option value="yahoo">Yahoo</option>  
+          </select>  
+          <input type="text" id="vbSearchInput" placeholder="Search...">  
+          <button id="vbSearchButton" type="submit"><i class="fas fa-search"></i></button>  
+        </form>  
+        <button id="vbReload"><i class="fas fa-sync-alt"></i></button>  
+        <button id="vbClose"><i class="fas fa-times"></i></button>  
+      </div>   
+    <iframe id="vbIframe"></iframe>  
+  </div> 
+
+            <span class="spacer"></span>  
+    
+            <button class="screen-size-icon">  
+                <i id="screen-icon" class="fas fa-mobile-alt"></i>  
+            </button>  
+            <span class="dimensions">  
+                <span id="width">0</span> x <span id="height">0</span>  
+            </span>  
+        </div> 
+        <div class="container">  
+            <div id="panel1" class="panel">  
+                <textarea id="code-editor"></textarea>  
+            </div>  
+            <div class="resizer"><i class="fa-regular fa-grip-lines-vertical"></i></div>  
+            <div id="panel2" class="panel">  
+                <iframe id="live-preview"></iframe>  
+                <div class="iframe-overlay"></div>  
+            </div>  
+        </div>
+    </div>
+ 
+
   
-    </div>  -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/codemirror.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/mode/htmlmixed/htmlmixed.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/edit/closebrackets.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/edit/closetag.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.15/addon/fold/xml-fold.min.js"></script>  
+
+    <script src="resize.js"></script>  
+    <script src="control.js"></script>  
+    <script src="main.js"></script>  
+    <script src="vb.js"></script>  
+</body>  
+</html>  
