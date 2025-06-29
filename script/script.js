@@ -4,7 +4,6 @@ var defaultTabSize = 4; // Default tab size
 var defaultFontSize = 12; // Default font size (in pixels)
 
 document.querySelector('#runButton').addEventListener('click', () => {
-    console.log('asasasas');
     // Get the values from the editors
     var htmlContent = editors.html.getValue();
     var cssContent = editors.css.getValue();
