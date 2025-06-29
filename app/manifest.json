@@ -1,6 +1,6 @@
 {
-    "name": "Haprina",
-    "short_name": "H-IDE",
+    "name": "Quick Editor",
+    "short_name": "Q-IDE",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
