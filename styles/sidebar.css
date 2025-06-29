@@ -73,11 +73,11 @@
     cursor: pointer;
 }
 
-.checkbox label {
+/* .checkbox label {
     font-size: 13px;
     color: rgba(255, 255, 255, 0.671);
 }
-
+ */
 .sidebar-inp input,
 .sidebar-inp select {
     width: 110px;
